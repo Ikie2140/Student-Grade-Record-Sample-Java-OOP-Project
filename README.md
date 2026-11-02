@@ -18,8 +18,15 @@ A student grade management system that handles well... As you may have guessed, 
 - Sort Students by marks
 - Exit
 
+myJFrame.getContentPane().setBackground( desiredColor )
+
 ![alt text](image.png)
 
 **Inspiration**
 - [Student Record System using Java Swing - GeeksforGeeks](https://www.geeksforgeeks.org/java/student-record-system-using-java-swing/)
 - [Build a Student Management System Using Java & MySQL | by charan sai | Medium](https://medium.com/@charansai.ashokit/build-a-student-management-system-using-java-mysql-a41be0bb09f3)
+- [(11) Student Management System in Java | NetBeans | MySQL Database - YouTube](https://www.youtube.com/watch?v=zKzgvBYa6hQ&list=PLVPt_R_IXgiTv6QiLAAcDzUpXaLG6ABxg)
+
+![alt text](image-2.png)
+![alt text](image-1.png)
+![alt text](image-3.png)
