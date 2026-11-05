@@ -8,6 +8,10 @@ package studentgraderecordoopfinalproject;
  *
  * @author Ikie
  */
+import java.awt.color.*;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 public class StudentGradeRecordGUI extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(StudentGradeRecordGUI.class.getName());
@@ -28,26 +32,115 @@ public class StudentGradeRecordGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        backPanel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        lbTitle = new javax.swing.JLabel();
+        butStudents = new javax.swing.JButton();
+        butStudents1 = new javax.swing.JButton();
+        butStudents2 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        backPanel.setBackground(new java.awt.Color(167, 4, 18));
+
+        lbTitle.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
+        lbTitle.setText("STUDENT GRADE RECORD MANAGEMENT SYSTEM");
+
+        butStudents.setBackground(new java.awt.Color(204, 204, 204));
+        butStudents.setText("Students");
+        butStudents.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        butStudents.addActionListener(this::butStudentsActionPerformed);
+
+        butStudents1.setBackground(new java.awt.Color(204, 204, 204));
+        butStudents1.setText("Students");
+        butStudents1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        butStudents1.addActionListener(this::butStudents1ActionPerformed);
+
+        butStudents2.setBackground(new java.awt.Color(204, 204, 204));
+        butStudents2.setText("Students");
+        butStudents2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        butStudents2.addActionListener(this::butStudents2ActionPerformed);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addComponent(lbTitle))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(164, 164, 164)
+                        .addComponent(butStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(91, 91, 91)
+                        .addComponent(butStudents2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(86, 86, 86)
+                        .addComponent(butStudents1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(61, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(lbTitle)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(butStudents1, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                        .addComponent(butStudents2, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
+                    .addComponent(butStudents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        javax.swing.GroupLayout backPanelLayout = new javax.swing.GroupLayout(backPanel);
+        backPanel.setLayout(backPanelLayout);
+        backPanelLayout.setHorizontalGroup(
+            backPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        backPanelLayout.setVerticalGroup(
+            backPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backPanelLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 371, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(backPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(backPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void butStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butStudentsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_butStudentsActionPerformed
+
+    private void butStudents1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butStudents1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_butStudents1ActionPerformed
+
+    private void butStudents2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butStudents2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_butStudents2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel backPanel;
+    private javax.swing.JButton butStudents;
+    private javax.swing.JButton butStudents1;
+    private javax.swing.JButton butStudents2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbTitle;
     // End of variables declaration//GEN-END:variables
 }
