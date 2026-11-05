@@ -54,6 +54,15 @@ public class GradeRecordSystem {
         current.setProgram(updatedInfo.getProgram());
         current.setYearLevel(updatedInfo.getYearLevel());
         current.setSection(updatedInfo.getSection());
+        current.setDisplayName(updatedInfo.getDisplayName());
+        current.setDateOfBirth(updatedInfo.getDateOfBirth());
+        current.setGender(updatedInfo.getGender());
+        current.setEmail(updatedInfo.getEmail());
+        current.setPhoneNumber(updatedInfo.getPhoneNumber());
+        current.setFatherName(updatedInfo.getFatherName());
+        current.setMotherName(updatedInfo.getMotherName());
+        current.setAddressLine1(updatedInfo.getAddressLine1());
+        current.setAddressLine2(updatedInfo.getAddressLine2());
         return true;
     }
 

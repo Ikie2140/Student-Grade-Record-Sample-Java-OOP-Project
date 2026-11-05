@@ -1,14 +1,46 @@
 package studentgraderecordoopfinalproject;
 
+import OopFinalProj.GradeRecordSystem;
+import OopFinalProj.Student;
+import OopFinalProj.StudentRecord;
+import OopFinalProj.SubjectGrade;
+
 public class LoginUI extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LoginUI.class.getName());
+    private static final String MOCK_STAFF_ID = "STAFF-001";
+    private static final String MOCK_STAFF_PASSWORD = "admin123";
 
-    Student studs = new Student();
-    StudentGradeRecordGUI MainFrame = new StudentGradeRecordGUI(studs);
+    private final GradeRecordSystem system;
     
     public LoginUI() {
+        this(createMockSystem());
+    }
+
+    public LoginUI(GradeRecordSystem system) {
+        this.system = system;
         initComponents();
+    }
+
+    private static GradeRecordSystem createMockSystem() {
+        GradeRecordSystem system = new GradeRecordSystem();
+
+        Student juan = new Student("2026-0001", "Dela Cruz", "Juan", "Santos",
+                "BSIT", "2", "F1");
+        system.addStudentRecord(new StudentRecord(juan));
+        system.encodeGrade("2026-0001",
+                new SubjectGrade("IT203", "Object Oriented Programming", 3.0, 88.0, 90.0, 92.0));
+        system.encodeGrade("2026-0001",
+                new SubjectGrade("IT204", "Data Structures", 3.0, 78.0, 80.0, 76.0));
+
+        Student maria = new Student("2026-0002", "Reyes", "Maria", "Lopez",
+                "BSIT", "2", "F1");
+        system.addStudentRecord(new StudentRecord(maria));
+        system.encodeGrade("2026-0002",
+                new SubjectGrade("IT203", "Object Oriented Programming", 3.0, 70.0, 68.0, 72.0));
+        system.updateGrades("2026-0002", "IT203", 74.0, 76.0, 80.0);
+
+        return system;
     }
 
     /**
@@ -50,7 +82,9 @@ public class LoginUI extends javax.swing.JFrame {
         bCancel.setText("Clear");
         bCancel.addActionListener(this::bCancelActionPerformed);
 
-        jPasswordField1.setText("jPasswordField1");
+        jPasswordField1.setText("");
+        tfNurseID.setToolTipText("Mock staff ID: STAFF-001");
+        jPasswordField1.setToolTipText("Mock password: admin123");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -134,17 +168,36 @@ public class LoginUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tfNurseIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNurseIDActionPerformed
-        // TODO add your handling code here:
+        bLoginActionPerformed(evt);
     }//GEN-LAST:event_tfNurseIDActionPerformed
 
     private void bLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLoginActionPerformed
-        // TODO add your handling code here:
-        MainFrame.setVisible(true);
+        String staffId = tfNurseID.getText().trim();
+        String password = new String(jPasswordField1.getPassword());
+
+        if (staffId.isEmpty() || password.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Staff ID and password are required.",
+                    "Login", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (!MOCK_STAFF_ID.equals(staffId) || !MOCK_STAFF_PASSWORD.equals(password)) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Invalid staff ID or password.",
+                    "Login", javax.swing.JOptionPane.ERROR_MESSAGE);
+            jPasswordField1.setText("");
+            return;
+        }
+
+        new StudentGradeRecordGUI(system).setVisible(true);
         dispose();
     }//GEN-LAST:event_bLoginActionPerformed
 
     private void bCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelActionPerformed
-        // TODO add your handling code here:
+        tfNurseID.setText("");
+        jPasswordField1.setText("");
+        tfNurseID.requestFocusInWindow();
     }//GEN-LAST:event_bCancelActionPerformed
 
     /**

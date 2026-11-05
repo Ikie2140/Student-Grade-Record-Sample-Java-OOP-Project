@@ -5,8 +5,11 @@
         <group>
             <file>file:/C:/Users/Ikie/Student-Grade-Record-Sample-Java-OOP-Project/StudentGradeRecordOOPFinalProject/src/studentgraderecordoopfinalproject/LoginUI.java</file>
             <file>file:/C:/Users/Ikie/Student-Grade-Record-Sample-Java-OOP-Project/StudentGradeRecordOOPFinalProject/src/studentgraderecordoopfinalproject/StudentGradeRecordOOPFinalProject.java</file>
-            <file>file:/C:/Users/Ikie/Student-Grade-Record-Sample-Java-OOP-Project/StudentGradeRecordOOPFinalProject/src/studentgraderecordoopfinalproject/Student.java</file>
             <file>file:/C:/Users/Ikie/Student-Grade-Record-Sample-Java-OOP-Project/StudentGradeRecordOOPFinalProject/src/studentgraderecordoopfinalproject/StudentGradeRecordGUI.java</file>
+            <file>file:/C:/Users/Ikie/Student-Grade-Record-Sample-Java-OOP-Project/StudentGradeRecordOOPFinalProject/src/studentgraderecordoopfinalproject/StudentPanel.java</file>
+            <file>file:/C:/Users/Ikie/Student-Grade-Record-Sample-Java-OOP-Project/StudentGradeRecordOOPFinalProject/src/studentgraderecordoopfinalproject/GradesPanel.java</file>
+            <file>file:/C:/Users/Ikie/Student-Grade-Record-Sample-Java-OOP-Project/StudentGradeRecordOOPFinalProject/src/studentgraderecordoopfinalproject/RecordsPanel.java</file>
+            <file>file:/C:/Users/Ikie/Student-Grade-Record-Sample-Java-OOP-Project/StudentGradeRecordOOPFinalProject/src/studentgraderecordoopfinalproject/SummaryPanel.java</file>
         </group>
     </open-files>
 </project-private>

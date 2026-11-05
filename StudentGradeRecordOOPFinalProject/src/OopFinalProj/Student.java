@@ -8,6 +8,15 @@ public class Student {
     private String program;
     private String yearLevel;
     private String section;
+    private String displayName;
+    private String dateOfBirth;
+    private String gender;
+    private String email;
+    private String phoneNumber;
+    private String fatherName;
+    private String motherName;
+    private String addressLine1;
+    private String addressLine2;
 
     public Student(String studentId, String lastName, String firstName, String middleName,
                    String program, String yearLevel, String section) {
@@ -18,6 +27,15 @@ public class Student {
         setProgram(program);
         setYearLevel(yearLevel);
         setSection(section);
+        displayName = "";
+        dateOfBirth = "";
+        gender = "";
+        email = "";
+        phoneNumber = "";
+        fatherName = "";
+        motherName = "";
+        addressLine1 = "";
+        addressLine2 = "";
     }
 
     // ---------- Getters ----------
@@ -28,6 +46,15 @@ public class Student {
     public String getProgram()    { return program; }
     public String getYearLevel()  { return yearLevel; }
     public String getSection()    { return section; }
+    public String getDisplayName() { return displayName; }
+    public String getDateOfBirth() { return dateOfBirth; }
+    public String getGender() { return gender; }
+    public String getEmail() { return email; }
+    public String getPhoneNumber() { return phoneNumber; }
+    public String getFatherName() { return fatherName; }
+    public String getMotherName() { return motherName; }
+    public String getAddressLine1() { return addressLine1; }
+    public String getAddressLine2() { return addressLine2; }
 
     // ---------- Setters (with validation) ----------
     public void setStudentId(String studentId) {
@@ -58,8 +85,47 @@ public class Student {
         this.section = requireText(section, "Section");
     }
 
+    public void setDisplayName(String displayName) {
+        this.displayName = requireText(displayName, "Student name");
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = optionalText(dateOfBirth);
+    }
+
+    public void setGender(String gender) {
+        this.gender = optionalText(gender);
+    }
+
+    public void setEmail(String email) {
+        this.email = optionalText(email);
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = optionalText(phoneNumber);
+    }
+
+    public void setFatherName(String fatherName) {
+        this.fatherName = optionalText(fatherName);
+    }
+
+    public void setMotherName(String motherName) {
+        this.motherName = optionalText(motherName);
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = optionalText(addressLine1);
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = optionalText(addressLine2);
+    }
+
     // ---------- Helper methods ----------
     public String getFullName() {
+        if (!displayName.isEmpty()) {
+            return displayName;
+        }
         return lastName + ", " + firstName + (middleName.isEmpty() ? "" : " " + middleName);
     }
 
@@ -68,6 +134,10 @@ public class Student {
             throw new IllegalArgumentException(fieldName + " must not be empty.");
         }
         return value.trim();
+    }
+
+    private static String optionalText(String value) {
+        return value == null ? "" : value.trim();
     }
 
     @Override
