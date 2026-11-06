@@ -2,6 +2,10 @@
 A student grade management system that handles well... As you may have guessed, their fuckass grades
 
 ----
+##### For testing:
+- AdminID -> STAFF-001
+- password -> admin123
+
 ### Leche Plan
 
 **Inclusion in the simple system:**

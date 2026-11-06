@@ -1,7 +1,11 @@
 package OopFinalProj;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class GradeRecordSystem {
+    private static final Pattern NUMERIC_ID = Pattern.compile("^(\\d{4})-(\\d+)$");
     private final ArrayList<StudentRecord> studentRecords;
     private final int maxUnitsLoad;
 
@@ -18,6 +22,23 @@ public class GradeRecordSystem {
     }
 
     // =============== CREATE / ADD ===============
+    /**
+     * Returns the next available student ID without adding a record.
+     * Existing IDs such as 2026-0001 are preserved and continued.
+     */
+    public String generateNextStudentId() {
+        int nextNumber = 1;
+        String year = String.valueOf(java.time.Year.now().getValue());
+        for (StudentRecord record : studentRecords) {
+            Matcher matcher = NUMERIC_ID.matcher(record.getStudent().getStudentId());
+            if (matcher.matches()) {
+                year = matcher.group(1);
+                nextNumber = Math.max(nextNumber, Integer.parseInt(matcher.group(2)) + 1);
+            }
+        }
+        return String.format("%s-%04d", year, nextNumber);
+    }
+
     public boolean addStudentRecord(StudentRecord record) throws DuplicateStudentException {
         if (record == null) {
             throw new IllegalArgumentException("Student record must not be null.");

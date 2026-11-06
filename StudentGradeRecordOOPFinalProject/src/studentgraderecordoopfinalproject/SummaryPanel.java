@@ -4,18 +4,13 @@ import OopFinalProj.GradeRecordSystem;
 import OopFinalProj.StudentRecord;
 import OopFinalProj.SubjectGrade;
 
-/**
- * "Summary" tab: summary of student grades (the README lists "view summary of
- * student grades" as a system function; the reference's equivalent is its
- * "Marks Sheet" tab).
- *
- * This panel is hand-written (it has no .form file), so the Form Editor will
- * not regenerate or overwrite it.
- */
+
 public class SummaryPanel extends javax.swing.JPanel {
 
     private static final java.awt.Color RED = new java.awt.Color(167, 4, 18);
     private static final java.awt.Color GRAY = new java.awt.Color(204, 204, 204);
+
+    private static final int VIEW_COLUMN = 3;
 
     private final GradeRecordSystem system;
 
@@ -41,11 +36,12 @@ public class SummaryPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Student ID", "Student Name", "Subject 1", "Subject 2", "Subject 3", "Subject 4", "Subject 5", "Average"
+                "Student ID", "Student Name", "Average", "Action"
             }
         ) {
+            // only the "Action" column (the View button) is editable, so the button can be clicked
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -55,6 +51,13 @@ public class SummaryPanel extends javax.swing.JPanel {
         tblSummary.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         tblSummary.getTableHeader().setReorderingAllowed(false);
         tblSummary.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblSummary.setRowHeight(32);
+        int[] columnWidths = { 120, 330, 100, 100 };
+        for (int i = 0; i < columnWidths.length; i++) {
+            tblSummary.getColumnModel().getColumn(i).setPreferredWidth(columnWidths[i]);
+        }
+        tblSummary.getColumnModel().getColumn(VIEW_COLUMN).setCellRenderer(new ViewButtonRenderer());
+        tblSummary.getColumnModel().getColumn(VIEW_COLUMN).setCellEditor(new ViewButtonEditor());
         jScrollPane1.setViewportView(tblSummary);
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(
                 javax.swing.BorderFactory.createLineBorder(RED, 2), "Summary of Student Grades",
@@ -88,18 +91,78 @@ public class SummaryPanel extends javax.swing.JPanel {
     }
 
     private void loadRows() {
+        if (tblSummary.isEditing()) {
+            tblSummary.getCellEditor().cancelCellEditing();
+        }
         javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tblSummary.getModel();
         model.setRowCount(0);
         for (StudentRecord record : system.getAllRecords()) {
-            Object[] row = new Object[8];
-            row[0] = record.getStudent().getStudentId();
-            row[1] = record.getStudent().getFullName();
-            for (int i = 0; i < 5; i++) {
-                row[i + 2] = i < record.getSubjectGrades().size()
-                        ? String.format("%.2f", record.getSubjectGrades().get(i).computeFinalGrade()) : "";
-            }
-            row[7] = String.format("%.2f", record.computeGWA());
-            model.addRow(row);
+            model.addRow(new Object[] {
+                record.getStudent().getStudentId(),
+                record.getStudent().getFullName(),
+                String.format("%.2f", record.computeGWA()),
+                "View"
+            });
+        }
+    }
+
+    /** Opens the academic performance window of the student with the given ID. */
+    private void openStudentPerformance(String studentId) {
+        StudentRecord record = system.findStudentById(studentId);
+        if (record == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Student record was not found.",
+                    "Summary", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        StudentPerformanceFrame frame = new StudentPerformanceFrame(record);
+        frame.setLocationRelativeTo(javax.swing.SwingUtilities.getWindowAncestor(this));
+        frame.setVisible(true);
+    }
+
+    /** Styles a JButton like the other buttons of the application. */
+    private static void styleViewButton(javax.swing.JButton button) {
+        button.setBackground(GRAY);
+        button.setText("View");
+        button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+    }
+
+    /** Draws the "View" button inside the table cells. */
+    private static class ViewButtonRenderer extends javax.swing.JButton implements javax.swing.table.TableCellRenderer {
+        ViewButtonRenderer() {
+            styleViewButton(this);
+        }
+
+        @Override
+        public java.awt.Component getTableCellRendererComponent(javax.swing.JTable table, Object value,
+                boolean isSelected, boolean hasFocus, int row, int column) {
+            return this;
+        }
+    }
+
+    /** Makes the "View" button clickable: opens the performance window of that row's student. */
+    private class ViewButtonEditor extends javax.swing.AbstractCellEditor implements javax.swing.table.TableCellEditor {
+        private final javax.swing.JButton button = new javax.swing.JButton();
+        private String studentId;
+
+        ViewButtonEditor() {
+            styleViewButton(button);
+            button.addActionListener(evt -> {
+                String id = studentId;
+                fireEditingStopped();
+                openStudentPerformance(id);
+            });
+        }
+
+        @Override
+        public java.awt.Component getTableCellEditorComponent(javax.swing.JTable table, Object value,
+                boolean isSelected, int row, int column) {
+            studentId = String.valueOf(table.getValueAt(row, 0));
+            return button;
+        }
+
+        @Override
+        public Object getCellEditorValue() {
+            return "View";
         }
     }
 

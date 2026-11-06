@@ -29,16 +29,16 @@ public class LoginUI extends javax.swing.JFrame {
                 "BSIT", "2", "F1");
         system.addStudentRecord(new StudentRecord(juan));
         system.encodeGrade("2026-0001",
-                new SubjectGrade("IT203", "Object Oriented Programming", 3.0, 88.0, 90.0, 92.0));
+                new SubjectGrade("OOP", "Object-Oriented Programming", 3.0, 88.0, 90.0, 92.0));
         system.encodeGrade("2026-0001",
-                new SubjectGrade("IT204", "Data Structures", 3.0, 78.0, 80.0, 76.0));
+                new SubjectGrade("DSA", "Data Structures and Algorithms", 3.0, 78.0, 80.0, 76.0));
 
         Student maria = new Student("2026-0002", "Reyes", "Maria", "Lopez",
                 "BSIT", "2", "F1");
         system.addStudentRecord(new StudentRecord(maria));
         system.encodeGrade("2026-0002",
-                new SubjectGrade("IT203", "Object Oriented Programming", 3.0, 70.0, 68.0, 72.0));
-        system.updateGrades("2026-0002", "IT203", 74.0, 76.0, 80.0);
+                new SubjectGrade("OOP", "Object-Oriented Programming", 3.0, 70.0, 68.0, 72.0));
+        system.updateGrades("2026-0002", "OOP", 74.0, 76.0, 80.0);
 
         return system;
     }

@@ -85,6 +85,11 @@ public class StudentRecord {
         return (totalUnits == 0.0) ? 0.0 : weightedTotal / totalUnits;
     }
 
+    /** GWA converted to the 1.00 - 5.00 scale (the transmuted equivalent of computeGWA()). */
+    public double computeTransmutedGWA() {
+        return SubjectGrade.transmute(computeGWA());
+    }
+
     public String getAcademicStatus() {
         if (subjectGrades.isEmpty()) {
             return "NO GRADES ENCODED";

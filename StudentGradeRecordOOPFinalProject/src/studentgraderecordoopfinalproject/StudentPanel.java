@@ -4,15 +4,6 @@ import OopFinalProj.GradeRecordSystem;
 import OopFinalProj.Student;
 import OopFinalProj.StudentRecord;
 
-/**
- * "Student" tab: form used to add, update and delete a student record.
- * Layout reference: the "Student" tab of the README screenshots (form fields
- * on top, action buttons at the bottom). The students table is NOT here, it
- * lives in its own tab (RecordsPanel).
- *
- * This panel is hand-written (it has no .form file), so the Form Editor will
- * not regenerate or overwrite it.
- */
 public class StudentPanel extends javax.swing.JPanel {
 
     private static final java.awt.Color RED = new java.awt.Color(167, 4, 18);
@@ -24,6 +15,7 @@ public class StudentPanel extends javax.swing.JPanel {
     public StudentPanel(GradeRecordSystem system) {
         this.system = system;
         initComponents();
+        tfStudentID.setText(system.generateNextStudentId());
     }
 
     private void initComponents() {
@@ -174,6 +166,7 @@ public class StudentPanel extends javax.swing.JPanel {
 
     private void butAddNewActionPerformed(java.awt.event.ActionEvent evt) {
         try {
+            tfStudentID.setText(system.generateNextStudentId());
             Student student = readStudent();
             system.addStudentRecord(new StudentRecord(student));
             showMessage("Student added.");
@@ -227,7 +220,7 @@ public class StudentPanel extends javax.swing.JPanel {
     }
 
     private void butClearActionPerformed(java.awt.event.ActionEvent evt) {
-        tfStudentID.setText("");
+        tfStudentID.setText(system.generateNextStudentId());
         tfStudentName.setText("");
         tfDOB.setText("");
         cbGender.setSelectedIndex(0);
